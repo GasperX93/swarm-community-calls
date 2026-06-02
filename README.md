@@ -1,5 +1,8 @@
 # Swarm Community Calls
 
+> **Maintained by:** devrel team
+
+
 A static site listing past and upcoming [Swarm Community Calls](https://www.ethswarm.org) — monthly online events hosted by Swarm Foundation every last Thursday of the month.
 
 ## What's inside
