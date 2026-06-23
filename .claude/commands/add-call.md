@@ -8,15 +8,26 @@ Four workflows — tell the agent which one you want:
 - **"add recap"** — ~7 days after a call: add recap URL to the past call card
 
 ## Branch workflow
-- **"create upcoming"** and **"update agenda"** → work on the `staging` branch
-- After the call, merge `staging` → `main`
-- **"add image"** and **"add recap"** → work on `main` (post-call)
+Each call cycle gets its own working branch off `main` — there is no long-lived `staging` branch.
 
-Before starting any pre-call workflow, ensure you are on the `staging` branch:
+- **"create upcoming"** and **"update agenda"** → work on the current call's working branch
+- **"add image"** and **"add recap"** → also work on that same branch (or directly on `main` if it has already been merged)
+- After the call's content is finalized, merge the working branch → `main` and push (`main` is what the live site serves)
+
+The branch is named for the call cycle, e.g. `scc-june-2026` (historical branches used looser names like `scc-may` / `SCC-April`; prefer the `scc-<month>-<year>` form going forward).
+
+Before starting any workflow, make sure the working branch exists and is current. Create it from an up-to-date `main`:
 ```
-git checkout staging && git pull
+git checkout main && git pull
+git checkout -b scc-<month>-<year>   # or: git checkout scc-<month>-<year> if it already exists
 ```
-After making changes on staging, commit and push to `staging` (not `main`).
+After making changes, commit and push to the working branch (not directly to `main`). Once the cycle is done, merge into `main`:
+```
+git checkout main && git pull
+git merge --no-ff scc-<month>-<year>
+git push origin main
+```
+If `main` and the branch have diverged because `main` got independent edits, resolve `index.html` in favor of the working branch (it carries the authoritative latest timeline), but confirm no unique recap/agenda content on `main` is lost before doing so.
 
 ---
 
