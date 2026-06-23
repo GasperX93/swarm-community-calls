@@ -84,7 +84,13 @@ Triggered when: the next call date is known (typically right after the previous 
    - Update `.call-featured-title` with the new month (e.g. `Swarm Community Call &mdash; March`)
    - Update the Watch on X button `href` with the new broadcast link (or `#` if not yet known)
    - Reset `.call-featured-subtitle` back to generic: `This month&rsquo;s agenda:`
-   - Replace `.call-featured-agenda` with a single placeholder item: `<li>Agenda coming soon</li>`
+   - Replace `.call-featured-agenda` with the four standard category placeholders (categories are always the same — Workflow B fills in the right-hand side later):
+     ```html
+     <li><strong>Core Development Updates</strong> &mdash; TBD</li>
+     <li><strong>In Focus:</strong> TBD</li>
+     <li><strong>Community Talk:</strong> TBD</li>
+     <li><strong>Community AMA &amp; Open Space</strong> &mdash; TBD</li>
+     ```
    - Update the countdown target date in the `<script>` (the `eventTime` variable)
    - Update all calendar deep link URLs in the `.cal-picker-dropdown` with the new date/title
    - Update the `.cal-picker-dropdown` Apple/iCal `.ics` href to the new file
